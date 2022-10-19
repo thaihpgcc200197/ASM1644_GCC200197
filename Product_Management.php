@@ -26,7 +26,7 @@ if(isset($_GET["function"])=="del")
         if(isset($_GET["id"]))
         {
             $id = $_GET["id"];
-            mysqli_query($conn, "DELETE FROM product  WHERE Product_ID='$id'");
+            pg_query($conn, "DELETE FROM product  WHERE Product_ID='$id'");
             echo '<meta http-equiv="refresh" content="0;URL=?page=product_management"/>';
         }
     }
@@ -58,11 +58,11 @@ if(isset($_GET["function"])=="del")
             <?php
                 include_once("connection.php");
 				$No=1;
-                $result = mysqli_query($conn, "SELECT Product_ID, Product_Name, Price, Pro_qty, Pro_image, Cat_Name
+                $result = pg_query($conn, "SELECT Product_ID, Product_Name, Price, Pro_qty, Pro_image, Cat_Name
                 FROM product a, category b
                 WHERE a.Cat_ID= b.Cat_ID ORDER BY ProDate DESC");
 
-                While($row=mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                While($row=pg_fetch_array($result, PGSQL_ASSOC)){
 			?>
 			<tr>
               <td ><?php echo $No;  ?></td>
